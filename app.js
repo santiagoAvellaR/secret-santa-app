@@ -8,9 +8,21 @@ function asignTextToElement(element, text) {
 }
 
 function selectFriendRandomly() {
+    if (friendsList.length == 0) {
+        asignTextToElement('#resultado', "");
+        alert("No hay amigos en la lista! Agrega amigos para poder seleccionar uno.");
+        return;
+    }
+    const menssage = "El amigo seleccionado fue: ";
     let randomIndex = Math.floor(Math.random() * friendsList.length);
-    selectedFriend = friendsList[randomIndex];
+    console.log(friendsList);
+    console.log(randomIndex);
+    console.log(friendsList[randomIndex]);
+    selectedFriend = menssage + friendsList[randomIndex];
     asignTextToElement("#resultado", selectedFriend);
+    friendsList.splice(randomIndex, 1);
+    console.log(friendsList);
+    actualizeFriendsList();
     return;
 }
 
@@ -20,14 +32,28 @@ function addFriend() {
         alert("Debes ingresar un nombre! No puede estar vacío.");
         return;
     }
+    if (friendsList.includes(friendName)) {
+        alert("Ya tienes un amigo con ese nombre en lista!");
+        clearInputBox();
+        return;
+    }
     friendsList.push(friendName);
     actualizeFriendsList();
-    asignTextToElement("#amigo", "");
-    document.querySelector("#amigo").setAttribute("placeholder", "Escribe un nombre");
+    clearInputBox();
+}
+
+function clearInputBox() {
+    document.querySelector('#amigo').value = '';
+    document.querySelector('#amigo').setAttribute("placeholder", "Escribe un nombre");
 }
 
 function actualizeFriendsList() {
     let friendsString = "";
+    if (friendsList.length == 0) {
+        friendsString = "No hay amigos en la lista!";
+        asignTextToElement("#listaAmigos", friendsString);
+        return;
+    }
     for (let i = 0; i < friendsList.length -1; i++) {
         friendsString += friendsList[i] + ", ";
     }

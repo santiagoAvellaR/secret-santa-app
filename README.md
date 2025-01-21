@@ -8,6 +8,8 @@ La aplicación es una página web interactiva donde los usuarios pueden:
 - Añadir una lista de amigos participantes.
 - Realizar un sorteo para seleccionar un amigo de forma aleatoria.
 - Garantizar que cada amigo seleccionado no pueda ser sorteado nuevamente, simulando el proceso de sacar un papel de una bolsa.
+- Realizar el sorteo sólo en caso de haber amigos incluídos en la lista.
+- Validar que una persona no se inscriba dos o más.
 
 El propósito principal del proyecto es reforzar el aprendizaje práctico y fomentar el pensamiento lógico mediante la resolución de problemas cotidianos.
 
